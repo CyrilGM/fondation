@@ -1,0 +1,6 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0.0.1.common-1
+      author: CyrilChevalier
+      changes:
+      

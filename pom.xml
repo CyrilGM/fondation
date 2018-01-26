@@ -47,6 +47,7 @@
         <!-- ================================================ Versions =========================================================== -->
 
         <!-- 1. Versions des librairies externes -->
+        <liquibase.version>3.5.3</liquibase.version>
         <postgresql.version>9.4-1203-jdbc42</postgresql.version>
         <spring-boot.version>1.5.9.RELEASE</spring-boot.version>
         <spring-boot-dependencies.version>${spring-boot.version}</spring-boot-dependencies.version>
@@ -436,6 +437,11 @@
     <!--  ***************************************************************************************************** -->
     <dependencyManagement>
         <dependencies>
+			<dependency>
+			    <groupId>org.liquibase</groupId>
+			    <artifactId>liquibase-core</artifactId>
+                <version>${liquibase.version}</version>
+			</dependency>
 	        <dependency>
 	            <groupId>org.postgresql</groupId>
 	            <artifactId>postgresql</artifactId>
