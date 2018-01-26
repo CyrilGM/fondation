@@ -16,7 +16,36 @@
 			<artifactId>fondation-gm-rest</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+        </dependency>
 	</dependencies>
+
+    <build>
+        <finalName>assu-prod-${project.version}</finalName>
+        <defaultGoal>spring-boot:run</defaultGoal>
+        
+        <!-- plugins>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <descriptors>
+                        <descriptor>src/main/assembly/assembly-wiremock.xml</descriptor>
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>create-archive</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins-->
+    </build>
 
 	<profiles>
 		<profile>
@@ -49,15 +78,19 @@
 				<spring.profiles.active>dev${profile.no-liquibase}${profile.no-swagger}</spring.profiles.active>
 			</properties>
 			<dependencies>
-				<!-- dependency>
+				<dependency>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-devtools</artifactId>
 					<optional>true</optional>
 				</dependency>
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </dependency>
 				<dependency>
 					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-tomcat</artifactId>
-				</dependency-->
+					<artifactId>spring-boot-starter-web</artifactId>
+				</dependency>
 			</dependencies>
 		</profile>
 	</profiles>
