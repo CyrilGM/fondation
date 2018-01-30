@@ -2,5 +2,37 @@ databaseChangeLog:
   - changeSet:
       id: 0.0.1.common-1
       author: CyrilChevalier
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            - tableExists:
+                tableName: f_sec_comptes
+                schemaName: securite
       changes:
-      
+        - sql: 
+            dbms: postgresql
+            endDelimiter: ;
+            sql: >
+              CREATE SCHEMA IF NOT EXISTS securite;
+        - createTable:
+            tableName: f_sec_comptes
+            schemaName: securite
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: login
+                  type: varchar(60)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: password
+                  type: varchar(256)
+                  constraints:
+                    nullable: false                          
+                  

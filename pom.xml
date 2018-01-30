@@ -48,6 +48,8 @@
 
         <!-- 1. Versions des librairies externes -->
         <liquibase.version>3.5.3</liquibase.version>
+        <lombok.version>1.16.20</lombok.version>
+        <mapstruct.version>1.2.0.Final</mapstruct.version>
         <postgresql.version>9.4-1203-jdbc42</postgresql.version>
         <spring-boot.version>1.5.9.RELEASE</spring-boot.version>
         <spring-boot-dependencies.version>${spring-boot.version}</spring-boot-dependencies.version>
@@ -442,6 +444,16 @@
 			    <artifactId>liquibase-core</artifactId>
                 <version>${liquibase.version}</version>
 			</dependency>
+		    <dependency>
+		        <groupId>org.projectlombok</groupId>
+		        <artifactId>lombok</artifactId>
+		        <version>${lombok.version}</version>
+		    </dependency>
+		    <dependency>
+		        <groupId>org.mapstruct</groupId>
+		        <artifactId>mapstruct-jdk8</artifactId>
+		        <version>${mapstruct.version}</version>
+		    </dependency>
 	        <dependency>
 	            <groupId>org.postgresql</groupId>
 	            <artifactId>postgresql</artifactId>
