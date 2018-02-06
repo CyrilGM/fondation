@@ -10,6 +10,8 @@ import com.found.mapper.securite.FSecCompteResourceMapper;
 import com.found.repository.securite.FSecCompteRepository;
 import com.found.resource.securite.FSecCompteResource;
 
+import io.vavr.control.Option;
+
 /**
  * <p>
  *                  Classe représentant un service pour la gestion des ressources comptes
@@ -29,6 +31,7 @@ public class FSecCompteService {
     @Inject
     private FSecCompteResourceMapper            comptesMapper;
     
+    // ------------------------------------------ Méthodes publiques ---------------------------------
     /**
      * Retourne la liste des comptes
      * @return
@@ -36,6 +39,14 @@ public class FSecCompteService {
      */
     public List<FSecCompteResource> getSecComptes(){
         return this.comptesMapper.entityListToResourceList(this.comptesRepo.findAll());
+    }
+    
+    public Option<FSecCompteResource> findSecCompte(Long id){
+        return Option.of(this.comptesRepo.findOne(id)).flatMap(c->Option.of(this.comptesMapper.entityToResource(c)));
+    }
+    
+    public Option<FSecCompteResource> findSecCompteByLogin(String login){
+        return Option.ofOptional(this.comptesRepo.findByLogin(login)).flatMap(c->Option.of(this.comptesMapper.entityToResource(c)));
     }
     
     /**
@@ -48,6 +59,11 @@ public class FSecCompteService {
         return this.comptesMapper.entityToResource(this.comptesRepo.save(this.comptesMapper.resourceToEntity(compte)));
     }
     
+    /**
+     * Supprime un compte
+     * @param compteId
+     * @since 0.0.1
+     */
     public void deleteSecCompte(Long compteId){
         this.comptesRepo.delete(compteId);
     }
