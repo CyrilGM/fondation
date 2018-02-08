@@ -13,7 +13,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.gm</groupId>
-			<artifactId>fondation-gm-rest</artifactId>
+			<artifactId>fondation-common-core</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
         <dependency>
