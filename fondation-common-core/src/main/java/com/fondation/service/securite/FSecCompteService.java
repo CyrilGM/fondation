@@ -1,7 +1,5 @@
 package com.fondation.service.securite;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -10,6 +8,7 @@ import com.fondation.mapper.securite.FSecCompteResourceMapper;
 import com.fondation.repository.securite.FSecCompteRepository;
 import com.fondation.resource.securite.FSecCompteResource;
 
+import io.vavr.collection.List;
 import io.vavr.control.Option;
 
 /**
@@ -38,15 +37,15 @@ public class FSecCompteService {
      * @since 0.0.1
      */
     public List<FSecCompteResource> getSecComptes(){
-        return this.comptesMapper.entityListToResourceList(this.comptesRepo.findAll());
+        return this.comptesMapper.entitesToResources(List.ofAll(this.comptesRepo.findAll()));
     }
     
     public Option<FSecCompteResource> findSecCompte(Long id){
-        return Option.of(this.comptesRepo.findOne(id)).flatMap(c->Option.of(this.comptesMapper.entityToResource(c)));
+        return Option.of(this.comptesRepo.findOne(id)).flatMap(c->Option.of(this.comptesMapper.entiteToResource(c)));
     }
     
     public Option<FSecCompteResource> findSecCompteByLogin(String login){
-        return Option.ofOptional(this.comptesRepo.findByLogin(login)).flatMap(c->Option.of(this.comptesMapper.entityToResource(c)));
+        return Option.ofOptional(this.comptesRepo.findByLogin(login)).flatMap(c->Option.of(this.comptesMapper.entiteToResource(c)));
     }
     
     /**
@@ -56,7 +55,7 @@ public class FSecCompteService {
      * @since 0.0.1
      */
     public FSecCompteResource insertSecCompte(FSecCompteResource compte){
-        return this.comptesMapper.entityToResource(this.comptesRepo.save(this.comptesMapper.resourceToEntity(compte)));
+        return this.comptesMapper.entiteToResource(this.comptesRepo.save(this.comptesMapper.resourceToEntite(compte)));
     }
     
     /**
