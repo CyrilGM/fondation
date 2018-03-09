@@ -6,16 +6,16 @@ databaseChangeLog:
         - onFail: MARK_RAN
         - not:
             - tableExists:
-                tableName: f_sec_comptes
+                tableName: fsec_compte
                 schemaName: securite
       changes:
         - sql: 
-            dbms: postgresql
+            dbms: postgresql,h2
             endDelimiter: ;
             sql: >
               CREATE SCHEMA IF NOT EXISTS securite;
         - createTable:
-            tableName: f_sec_compte
+            tableName: fnd_compte
             schemaName: securite
             columns:
               - column:
@@ -36,7 +36,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false                          
         - createTable:
-            tableName: f_sec_permission
+            tableName: fnd_permission
             schemaName: securite
             columns:
               - column:
@@ -51,4 +51,3 @@ databaseChangeLog:
                   type: varchar(50)
                   constraints:
                     nullable: false
-                  
